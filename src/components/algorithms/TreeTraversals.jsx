@@ -5,14 +5,28 @@ class TreeTraversals extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      treeValues: ''
+      treeValues: '[ [5], [3, 7], [2, 4, 6, 8] ]',
+      treeRoot: null,
+      traversalMethod: 0,
     }
 
     this.updateTreeValues = this.updateTreeValues.bind(this);
+    this.updateTraversal = this.updateTraversal.bind(this);
+    this.updateTree = this.updateTree.bind(this);
+  }
+
+  updateTree() {
+    console.log(this.state.treeValues);
+
   }
 
   updateTreeValues(event) {
-    this.setState({ treeValues: event.target.value })
+    this.setState({ treeValues: event.target.value },
+    this.updateTree);
+  }
+
+  updateTraversal(event) {
+    this.setState({ traversalMethod: parseInt(event.target.value) });
   }
 
   render() {
@@ -28,9 +42,17 @@ class TreeTraversals extends React.Component {
           <input
             onChange={this.updateTreeValues}
             value={this.state.treeValues}
-            placeholder='1,3,5...'
+            placeholder='[[5],[3,7],[2,4,6,8]]'
             />
         </label>
+
+        <div onChange={this.updateTraversal}>
+          <input type='radio' value='0' checked={this.state.traversalMethod === 0 }/> Depths First Search
+          <input type='radio' value='1' checked={this.state.traversalMethod === 1 }/> Breadth First Search
+          <input type='radio' value='2' checked={this.state.traversalMethod === 2 }/> In Order
+          <input type='radio' value='3' checked={this.state.traversalMethod === 3 }/> Pre Order
+          <input type='radio' value='4' checked={this.state.traversalMethod === 4 }/> Post Order
+        </div>
 
         <br/>
         <br/>
