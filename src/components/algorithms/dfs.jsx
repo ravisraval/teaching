@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 
-class TeachingLanding extends React.Component {
+class DFS extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -9,12 +9,13 @@ class TeachingLanding extends React.Component {
   render() {
     return (
       <div>
-        <p>Teaching Landing</p>
-        <Link to='/teaching/algos'>Algorithms</Link>
+        <p>DFS</p>
+        <Link to='/teaching/algos/'>Back to Algos</Link>
+        <Link to='/teaching'>Back to Teaching</Link>
       </div>
 
     );
   }
 }
 
-export default TeachingLanding;
+export default DFS;
