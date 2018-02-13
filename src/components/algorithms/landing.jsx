@@ -10,7 +10,7 @@ class AlgoLanding extends React.Component {
     return (
       <div>
         <p>Algorithms landing</p>
-        <Link to='/teaching/algos/dfs'>Depth First Search</Link>
+        <Link to='/teaching/algos/tree_traversals'>Tree Traversals</Link>
         <Link to='/teaching'>Back to Teaching</Link>
       </div>
 

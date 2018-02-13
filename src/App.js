@@ -1,9 +1,10 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
+import './App.css';
 
 import TeachingLanding from './components/TeachingLanding';
 import AlgoLanding from './components/algorithms/landing';
-import DFS from './components/algorithms/dfs';
+import TreeTraversals from './components/algorithms/TreeTraversals';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,10 +18,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="body_wrapper">
         <Route exact path="/teaching" component={TeachingLanding}/>
         <Route exact path="/teaching/algos" component={AlgoLanding}/>
-        <Route exact path="/teaching/algos/dfs" component={DFS}/>
+        <Route exact path="/teaching/algos/tree_traversals" component={TreeTraversals}/>
       </div>
     );
   }
