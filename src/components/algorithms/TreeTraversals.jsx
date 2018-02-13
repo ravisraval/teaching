@@ -46,8 +46,8 @@ class TreeTraversals extends React.Component {
             />
         </label>
 
-        <div onChange={this.updateTraversal}>
-          <input type='radio' value='0' checked={this.state.traversalMethod === 0 }/> Depths First Search
+        <div className="radio_wrapper" onChange={this.updateTraversal}>
+          <input type='radio' value='0' checked={this.state.traversalMethod === 0 }/> Depth First Search
           <input type='radio' value='1' checked={this.state.traversalMethod === 1 }/> Breadth First Search
           <input type='radio' value='2' checked={this.state.traversalMethod === 2 }/> In Order
           <input type='radio' value='3' checked={this.state.traversalMethod === 3 }/> Pre Order

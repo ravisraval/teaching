@@ -1,3 +1,11 @@
 .body_wrapper {
   padding: 5%;
 }
+
+.radio_wrapper {
+  margin: 10px 0;
+  display: flex;
+  flex-flow: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
