@@ -1,12 +1,12 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Node from './Node';
 
 class TreeTraversals extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      treeValues: '[[5], [3, 7], [2, 4, 6, 8]]',
+      treeValues: '5.3, 3, 7, 2, 4, 6, 8',
       treeRoot: null,
       traversalMethod: 0,
     }
@@ -17,7 +17,9 @@ class TreeTraversals extends React.Component {
   }
 
   updateTree() {
-    console.log(this.state.treeValues.split(']'));
+    let nums = this.state.treeValues.replace(/[^0-9,.]/g,'').split(',');
+    nums = nums.map(num => parseFloat(num));
+
 
   }
 
@@ -33,7 +35,7 @@ class TreeTraversals extends React.Component {
   render() {
     return (
       <div>
-        <p>Tree Traversal</p>
+        <p>Binary Tree Traversal</p>
         <br/>
         <br/>
         <br/>
