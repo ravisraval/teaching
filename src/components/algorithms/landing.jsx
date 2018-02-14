@@ -11,6 +11,7 @@ class AlgoLanding extends React.Component {
       <div>
         <p>Algorithms landing</p>
         <Link to='/teaching/algos/tree_traversals'>Tree Traversals</Link>
+        <Link to='/teaching/algos/sorting'>Sorting</Link>
         <Link to='/teaching'>Back to Teaching</Link>
       </div>
 
