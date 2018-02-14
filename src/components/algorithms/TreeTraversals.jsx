@@ -15,7 +15,6 @@ class TreeTraversals extends React.Component {
     }
 
     this.updateTreeValues = this.updateTreeValues.bind(this);
-    this.traverse = this.traverse.bind(this);
     this.updateTree = this.updateTree.bind(this);
     this.levelOrder = this.levelOrder.bind(this);
   }
@@ -59,25 +58,6 @@ class TreeTraversals extends React.Component {
     this.updateTree);
   }
 
-  traverse(event) {
-    switch (event.target.value) {
-      case '0':
-        this.inOrder();
-        break;
-      case '1':
-        this.preOrder();
-        break;
-      case '2':
-        this.postOrder();
-        break;
-      case '3':
-        this.levelOrder();
-        break;
-      default:
-        console.log('nonexistent event');
-    }
-  }
-
   inOrder() {}
 
   preOrder() {}
@@ -86,7 +66,6 @@ class TreeTraversals extends React.Component {
 
   levelOrder() {
     this.setState({ highlightedNode: 2}); // temporary to test graph rendering
-
   }
 
   render() {
@@ -161,10 +140,10 @@ class TreeTraversals extends React.Component {
         </label>
 
         <div className="radio_wrapper" onChange={this.updateTraversal}>
-          <button value='0' onClick={this.traverse}>In Order</button>
-          <button value='1' onClick={this.traverse}>Pre Order</button>
-          <button value='2' onClick={this.traverse}>Post Order</button>
-          <button value='3' onClick={this.traverse}>Level Order (AKA Breadth First Search)</button>
+          <button value='0' onClick={this.inOrder}>In Order</button>
+          <button value='1' onClick={this.preOrder}>Pre Order</button>
+          <button value='2' onClick={this.postOrder}>Post Order</button>
+          <button value='3' onClick={this.levelOrder}>Level Order (AKA Breadth First Search)</button>
         </div>
 
       </div>
