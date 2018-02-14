@@ -11,6 +11,7 @@ class TreeTraversals extends React.Component {
       treeRoot: null,
       traversalMethod: 0, // or maybe just make these one time buttons
       nodes: [new TreeNode(5)],
+      highlightedNode: null,
     }
 
     this.updateTreeValues = this.updateTreeValues.bind(this);
@@ -31,6 +32,8 @@ class TreeTraversals extends React.Component {
     let currNode;
     let parentNode;
     for (var i = 1; i < nums.length; i++) {
+      if (isNaN(nums[i])) continue;
+
       currNode = new TreeNode(nums[i]);
       if (i % 2 === 0) { // if even
         nodes[i / 2].left = currNode;
@@ -57,10 +60,13 @@ class TreeTraversals extends React.Component {
 
   render() {
     const graphConfig = {
-      height: 200,
+      height: 300,
       width: 500,
+      minZoom: .5,
+      maxZoom: 3,
       node: {
         labelProperty: 'value',
+        color: 'rgb(233, 201, 29)'
       }
     };
 
@@ -90,12 +96,14 @@ class TreeTraversals extends React.Component {
 
     return (
       <div>
-        <p>Binary Tree Traversal</p>
+        <Link to='/teaching/algos/'>Back to Algos</Link>
         <br/>
-        <br/>
-        <br/>
-        <br/>
-        <Graph {...graphProps}/>
+        <Link to='/teaching'>Back to Teaching</Link>
+        <h2>Binary Tree Traversal</h2>
+
+        <div className="graph_container">
+          <Graph {...graphProps} />
+        </div>
 
         <label>Input Tree Values in Level Order
           <input
@@ -112,13 +120,7 @@ class TreeTraversals extends React.Component {
           <input type='radio' value='3' checked={this.state.traversalMethod === 3 }/> Level Order (AKA Breadth First Search, or bfs)
         </div>
 
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <Link to='/teaching/algos/'>Back to Algos</Link>
-        <br/>
-        <Link to='/teaching'>Back to Teaching</Link>
+
       </div>
 
     );
