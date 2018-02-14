@@ -64,6 +64,8 @@ class TreeTraversals extends React.Component {
       width: 500,
       minZoom: .5,
       maxZoom: 3,
+      nodeHighlightBehavior: true,
+      // staticGraph: true,
       node: {
         labelProperty: 'value',
         color: 'rgb(233, 201, 29)'
@@ -113,11 +115,17 @@ class TreeTraversals extends React.Component {
             />
         </label>
 
-        <div className="radio_wrapper" onChange={this.updateTraversal}>
+        {/*<div className="radio_wrapper" onChange={this.updateTraversal}>
           <input type='radio' value='0' checked={this.state.traversalMethod === 0 }/> In Order
           <input type='radio' value='1' checked={this.state.traversalMethod === 1 }/> Pre Order
           <input type='radio' value='2' checked={this.state.traversalMethod === 2 }/> Post Order
           <input type='radio' value='3' checked={this.state.traversalMethod === 3 }/> Level Order (AKA Breadth First Search, or bfs)
+        </div>*/}
+        <div className="radio_wrapper" onChange={this.updateTraversal}>
+          <button value='0' onClick={this.traverse}>In Order</button>
+          <button value='1' onClick={this.traverse}>Pre Order</button>
+          <button value='2' onClick={this.traverse}>Post Order</button>
+          <button value='3' onClick={this.traverse}> Level Order (AKA Breadth First Search, or bfs)</button>
         </div>
 
 
