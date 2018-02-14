@@ -9,14 +9,15 @@ class TreeTraversals extends React.Component {
     this.state = {
       treeValues: '5, 3, 7, 2, 4, 6, 8',
       treeRoot: null,
-      traversalMethod: 0, // or maybe just make these one time buttons
-      nodes: [new TreeNode(5)],
+      nodes: [new TreeNode(5)], // just a placeholder so no errors thrown while loading
       highlightedNode: 0,
+      traverseSpeed: 1000,
     }
 
     this.updateTreeValues = this.updateTreeValues.bind(this);
     this.traverse = this.traverse.bind(this);
     this.updateTree = this.updateTree.bind(this);
+    this.levelOrder = this.levelOrder.bind(this);
   }
 
   componentDidMount() {
@@ -24,29 +25,33 @@ class TreeTraversals extends React.Component {
   }
 
   updateTree() {
-    let nums = this.state.treeValues.replace(/[^0-9,.]/g,'').split(',');
-    nums = nums.map(num => parseFloat(num));
-    nums.unshift(null);
+    try {
+      let nums = this.state.treeValues.replace(/[^0-9,.]/g,'').split(',');
+      nums = nums.map(num => parseFloat(num));
+      nums.unshift(null);
 
-    const nodes = [null]; // spacer so parent-child logic below works
-    let currNode;
-    let parentNode;
-    for (var i = 1; i < nums.length; i++) {
-      if (isNaN(nums[i])) continue;
+      const nodes = [null]; // spacer so parent-child logic below works
+      let currNode;
+      let parentNode;
+      for (var i = 1; i < nums.length; i++) {
+        if (isNaN(nums[i])) continue;
 
-      currNode = new TreeNode(nums[i]);
-      if (i % 2 === 0) { // if even
-        nodes[i / 2].left = currNode;
-        // currNode.parent = nodes[i / 2]; // prob don't need to note parent
-      } else if (i !== 1 && i % 2 === 1) { // if odd and not 1
-        nodes[(i - 1)/ 2].right = currNode;
-        // currNode.parent = nodes[i / 2];
+        currNode = new TreeNode(nums[i]);
+        if (i % 2 === 0) { // if even
+          nodes[i / 2].left = currNode;
+          // currNode.parent = nodes[i / 2]; // prob don't need to note parent
+        } else if (i !== 1 && i % 2 === 1) { // if odd and not 1
+          nodes[(i - 1)/ 2].right = currNode;
+          // currNode.parent = nodes[i / 2];
+        }
+        nodes.push(currNode);
       }
 
-      nodes.push(currNode);
+      this.setState({ treeRoot: nodes[1], nodes: nodes.slice(1) });
     }
-
-    this.setState({ treeRoot: nodes[1], nodes: nodes.slice(1) });
+    catch(err) { // handle weird input
+      console.log(err);
+    }
   }
 
   updateTreeValues(event) {
@@ -69,27 +74,18 @@ class TreeTraversals extends React.Component {
         this.levelOrder();
         break;
       default:
-        console.log('something really messed up');
+        console.log('nonexistent event');
     }
   }
 
-  inOrder() {
-    this.setState({ })
-    console.log('inorder');
-  }
+  inOrder() {}
 
-  preOrder() {
-    console.log('preorder');
+  preOrder() {}
 
-  }
-
-  postOrder() {
-    console.log('postorder');
-
-  }
+  postOrder() {}
 
   levelOrder() {
-    console.log('levelorder');
+    this.setState({ highlightedNode: 2}); // temporary to test graph rendering
 
   }
 
@@ -99,30 +95,40 @@ class TreeTraversals extends React.Component {
       width: 500,
       minZoom: .5,
       maxZoom: 3,
+      // staticGraph: true,
       nodeHighlightBehavior: true,
       node: {
         labelProperty: 'value',
-        color: 'rgb(233, 201, 29)'
       }
     };
 
     const graphNodes = [];
     const graphLinks = [];
+
     for (var i = 0; i < this.state.nodes.length; i++) {
-      let node = this.state.nodes[i]
-      if (i === this.state.highlightedNode) {
-        node.color === 'green';
-        console.log(`setting ${node} to green`);
+      let node = this.state.nodes[i];
+
+      if (node.x == null) { //set first node
+        node.x = 250;
+        node.y = 250;
       }
+
       graphNodes.push({
         id: node.value,
+        x: node.x,
+        y: node.y,
         color: ( i === this.state.highlightedNode ? 'green' : 'orange')
       });
 
+      // will need to modify numbers to avoid overlapping with nested nodes
       if (node.left) {
+        node.left.x = node.x - 50;
+        node.left.y = node.y + 50;
         graphLinks.push({source: node.value, target: node.left.value});
       }
       if (node.right) {
+        node.right.x = node.x + 50;
+        node.right.y = node.y + 50;
         graphLinks.push({source: node.value, target: node.right.value});
       }
     };
@@ -144,7 +150,7 @@ class TreeTraversals extends React.Component {
         <h2>Binary Tree Traversal</h2>
 
         <div className="graph_container">
-          <Graph {...graphProps} />
+          <Graph ref='graph' {...graphProps} />
         </div>
 
         <label>Input Tree Values in Level Order
@@ -158,7 +164,7 @@ class TreeTraversals extends React.Component {
           <button value='0' onClick={this.traverse}>In Order</button>
           <button value='1' onClick={this.traverse}>Pre Order</button>
           <button value='2' onClick={this.traverse}>Post Order</button>
-          <button value='3' onClick={this.traverse}> Level Order (AKA Breadth First Search, or bfs)</button>
+          <button value='3' onClick={this.traverse}>Level Order (AKA Breadth First Search)</button>
         </div>
 
       </div>
