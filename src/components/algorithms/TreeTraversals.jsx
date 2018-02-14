@@ -21,7 +21,7 @@ class TreeTraversals extends React.Component {
     nums = nums.map(num => parseFloat(num));
     nums.unshift(null);
 
-    const nodes = [null];
+    const nodes = [null]; // spacer so parent-child logic below works
     let currNode;
     let parentNode;
     for (var i = 1; i < nums.length; i++) {
@@ -36,9 +36,8 @@ class TreeTraversals extends React.Component {
 
       nodes.push(currNode);
     }
-    console.log(nodes);
 
-
+    this.setState({ treeRoot: nodes[1] });
   }
 
   updateTreeValues(event) {
