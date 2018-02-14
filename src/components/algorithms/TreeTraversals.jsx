@@ -11,11 +11,11 @@ class TreeTraversals extends React.Component {
       treeRoot: null,
       traversalMethod: 0, // or maybe just make these one time buttons
       nodes: [new TreeNode(5)],
-      highlightedNode: null,
+      highlightedNode: 0,
     }
 
     this.updateTreeValues = this.updateTreeValues.bind(this);
-    this.updateTraversal = this.updateTraversal.bind(this);
+    this.traverse = this.traverse.bind(this);
     this.updateTree = this.updateTree.bind(this);
   }
 
@@ -54,8 +54,43 @@ class TreeTraversals extends React.Component {
     this.updateTree);
   }
 
-  updateTraversal(event) {
-    this.setState({ traversalMethod: parseInt(event.target.value) });
+  traverse(event) {
+    switch (event.target.value) {
+      case '0':
+        this.inOrder();
+        break;
+      case '1':
+        this.preOrder();
+        break;
+      case '2':
+        this.postOrder();
+        break;
+      case '3':
+        this.levelOrder();
+        break;
+      default:
+        console.log('something really messed up');
+    }
+  }
+
+  inOrder() {
+    this.setState({ })
+    console.log('inorder');
+  }
+
+  preOrder() {
+    console.log('preorder');
+
+  }
+
+  postOrder() {
+    console.log('postorder');
+
+  }
+
+  levelOrder() {
+    console.log('levelorder');
+
   }
 
   render() {
@@ -65,7 +100,6 @@ class TreeTraversals extends React.Component {
       minZoom: .5,
       maxZoom: 3,
       nodeHighlightBehavior: true,
-      // staticGraph: true,
       node: {
         labelProperty: 'value',
         color: 'rgb(233, 201, 29)'
@@ -74,9 +108,16 @@ class TreeTraversals extends React.Component {
 
     const graphNodes = [];
     const graphLinks = [];
-
-    this.state.nodes.forEach(node => {
-      graphNodes.push({id: node.value});
+    for (var i = 0; i < this.state.nodes.length; i++) {
+      let node = this.state.nodes[i]
+      if (i === this.state.highlightedNode) {
+        node.color === 'green';
+        console.log(`setting ${node} to green`);
+      }
+      graphNodes.push({
+        id: node.value,
+        color: ( i === this.state.highlightedNode ? 'green' : 'orange')
+      });
 
       if (node.left) {
         graphLinks.push({source: node.value, target: node.left.value});
@@ -84,8 +125,7 @@ class TreeTraversals extends React.Component {
       if (node.right) {
         graphLinks.push({source: node.value, target: node.right.value});
       }
-
-    });
+    };
 
     const graphProps = {
       id: 'graph',
@@ -111,23 +151,15 @@ class TreeTraversals extends React.Component {
           <input
             onChange={this.updateTreeValues}
             value={this.state.treeValues}
-            placeholder='[[5],[3,7],[2,4,6,8]]'
             />
         </label>
 
-        {/*<div className="radio_wrapper" onChange={this.updateTraversal}>
-          <input type='radio' value='0' checked={this.state.traversalMethod === 0 }/> In Order
-          <input type='radio' value='1' checked={this.state.traversalMethod === 1 }/> Pre Order
-          <input type='radio' value='2' checked={this.state.traversalMethod === 2 }/> Post Order
-          <input type='radio' value='3' checked={this.state.traversalMethod === 3 }/> Level Order (AKA Breadth First Search, or bfs)
-        </div>*/}
         <div className="radio_wrapper" onChange={this.updateTraversal}>
           <button value='0' onClick={this.traverse}>In Order</button>
           <button value='1' onClick={this.traverse}>Pre Order</button>
           <button value='2' onClick={this.traverse}>Post Order</button>
           <button value='3' onClick={this.traverse}> Level Order (AKA Breadth First Search, or bfs)</button>
         </div>
-
 
       </div>
 
