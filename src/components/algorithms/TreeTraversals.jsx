@@ -6,7 +6,7 @@ class TreeTraversals extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      treeValues: '5.3, 3, 7, 2, 4, 6, 8',
+      treeValues: '5, 3, 7, 2, 4, 6, 8',
       treeRoot: null,
       traversalMethod: 0,
     }
@@ -19,6 +19,24 @@ class TreeTraversals extends React.Component {
   updateTree() {
     let nums = this.state.treeValues.replace(/[^0-9,.]/g,'').split(',');
     nums = nums.map(num => parseFloat(num));
+    nums.unshift(null);
+
+    const nodes = [null];
+    let currNode;
+    let parentNode;
+    for (var i = 1; i < nums.length; i++) {
+      currNode = new Node(nums[i]);
+      if (i % 2 === 0) { // if even
+        nodes[i / 2].left = currNode;
+        // currNode.parent = nodes[i / 2]; // prob don't need to note parent
+      } else if (i !== 1 && i % 2 === 1) { // if odd and not 1
+        nodes[(i - 1)/ 2].right = currNode;
+        // currNode.parent = nodes[i / 2];
+      }
+
+      nodes.push(currNode);
+    }
+    console.log(nodes);
 
 
   }
