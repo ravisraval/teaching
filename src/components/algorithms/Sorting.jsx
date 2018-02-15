@@ -9,12 +9,15 @@ class Sorting extends React.Component {
     this.state = {
       unsortedValues: '',
       sortedValues: [2,5,7,9],
+
     }
 
     this.bubbleSort = this.bubbleSort.bind(this);
     this.quickSort = this.quickSort.bind(this);
     this.mergeSort = this.mergeSort.bind(this);
     this.updateUnsortedValue = this.updateUnsortedValue.bind(this);
+    this.prevStep = this.prevStep.bind(this);
+    this.nextStep = this.nextStep.bind(this);
   }
 
   bubbleSort() {
@@ -24,6 +27,14 @@ class Sorting extends React.Component {
     this.setState({ sortedValues: [2,5,9,7]});
   }
   mergeSort() {}
+
+  prevStep() {
+
+  }
+
+  nextStep() {
+
+  }
 
   updateUnsortedValue(event) {
     this.setState({
@@ -53,8 +64,13 @@ class Sorting extends React.Component {
           staggerDurationBy={250}
           className="sortCards-container"
           >
-            {sortCards}
+          {sortCards}
         </FlipMove>
+
+        <div className="btn-group">
+          <button onClick={this.prevStep}>Previous Step</button>
+          <button onClick={this.nextStep}>Next Step</button>
+        </div>
 
         <label>Numbers to Sort
           <input
