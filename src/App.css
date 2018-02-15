@@ -54,9 +54,13 @@ a {
 }
 
 .highCard {
-  border: 1px solid yellow;
+  border: 2px solid yellow;
+}
+
+.swapCard {
+  border: 2px solid red;
 }
 
 .regCard {
-  border: 1px solid red;
+  border: 1px solid grey;
 }

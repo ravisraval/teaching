@@ -12,6 +12,7 @@ class Sorting extends React.Component {
       steps: [],
       stepIndex: 0,
       highlightedCards: [],
+      swapHappening: false,
     }
 
     this.bubbleSort = this.bubbleSort.bind(this);
@@ -33,7 +34,10 @@ class Sorting extends React.Component {
       swapped = false;
       for (let i = 0; i < currentStep.length - 1; i++) {
         steps.push([
-          currentStep.map(ch => ch), currentStep[i], currentStep[i + 1]
+          currentStep.map(ch => ch),
+          currentStep[i],
+          currentStep[i + 1],
+          false
         ]);
 
         if (currentStep[i] > currentStep[i + 1]) {
@@ -42,7 +46,10 @@ class Sorting extends React.Component {
           currentStep[i + 1] = swap;
           swapped = true;
           steps.push([
-            currentStep.map(ch => ch), currentStep[i], currentStep[i + 1]
+            currentStep.map(ch => ch),
+            currentStep[i],
+            currentStep[i + 1],
+            true
           ]);
         }
 
@@ -80,7 +87,8 @@ class Sorting extends React.Component {
     this.setState({
       stepIndex: this.state.stepIndex + 1,
       sortedValues: this.state.steps[this.state.stepIndex][0],
-      highlightedCards: this.state.steps[this.state.stepIndex].slice(1)
+      highlightedCards: this.state.steps[this.state.stepIndex].slice(1,3),
+      swapHappening: this.state.steps[this.state.stepIndex].slice(-1)[0]
     });
 
   }
@@ -97,6 +105,7 @@ class Sorting extends React.Component {
       <SortCard
         key={ value } value={ value }
         highCards={this.state.highlightedCards}
+        swapping={this.state.swapHappening}
      />
     ));
 
