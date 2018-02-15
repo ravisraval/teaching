@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import FlipMove from 'react-flip-move';
 import SortCard from './SortCard';
 
 class Sorting extends React.Component {
@@ -7,21 +8,29 @@ class Sorting extends React.Component {
     super(props);
     this.state = {
       unsortedValues: '',
-      sortedValues: [2,5,7],
+      sortedValues: [2,5,7,9],
     }
 
     this.bubbleSort = this.bubbleSort.bind(this);
     this.quickSort = this.quickSort.bind(this);
     this.mergeSort = this.mergeSort.bind(this);
+    this.updateUnsortedValue = this.updateUnsortedValue.bind(this);
   }
 
   bubbleSort() {
-    this.setState({ sortedValues: [2,7,5]});
+    this.setState({ sortedValues: [9,2,7,5]});
   }
   quickSort() {
-    this.setState({ sortedValues: [2,5,7]});
+    this.setState({ sortedValues: [2,5,9,7]});
   }
   mergeSort() {}
+
+  updateUnsortedValue(event) {
+    this.setState({
+      unsortedValues: event.target.value,
+      sortedValues: event.target.value.replace(/[^0-9,.]/g,'').split(',')
+     });
+  }
 
   render() {
     const sortCards = this.state.sortedValues.map(value => (
@@ -37,7 +46,15 @@ class Sorting extends React.Component {
         <Link to='/teaching'>Back to Teaching</Link>
         <Link to='/teaching/algos/'>Back to Algos</Link>
 
-        <div className="sortCards-container">{sortCards}</div>
+        <FlipMove
+          enterAnimation='accordionHorizontal'
+          maintainContainerHeight
+          duration={350}
+          staggerDurationBy={250}
+          className="sortCards-container"
+          >
+            {sortCards}
+        </FlipMove>
 
         <label>Numbers to Sort
           <input
