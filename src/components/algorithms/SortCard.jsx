@@ -7,7 +7,6 @@ class SortCard extends React.Component {
   }
 
   render() {
-    console.log('im in a sortcard', this.props);
     return (
       <div className="sortCard-container">
         <h2>{this.props.value}</h2>

@@ -20,8 +20,10 @@ a {
 }
 
 .sortCard-container {
-  border: 2px solid grey;
-  padding: 0 5px;
+  /* border: 2px solid grey; */
+  padding: 0 10px;
+  background-color: rgb(26, 179, 18);
+  /* color: white; */
 }
 
 .sortCards-container {
@@ -29,4 +31,5 @@ a {
   display: flex;
   flex-flow: row;
   justify-content: space-around;
+  background-color: black;
 }

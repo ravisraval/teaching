@@ -15,8 +15,12 @@ class Sorting extends React.Component {
     this.mergeSort = this.mergeSort.bind(this);
   }
 
-  bubbleSort() {}
-  quickSort() {}
+  bubbleSort() {
+    this.setState({ sortedValues: [2,7,5]});
+  }
+  quickSort() {
+    this.setState({ sortedValues: [2,5,7]});
+  }
   mergeSort() {}
 
   render() {
