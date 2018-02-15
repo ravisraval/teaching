@@ -54,6 +54,7 @@ class TreeTraversals extends React.Component {
   }
 
   updateTreeValues(event) {
+    console.log(event.target);
     this.setState({ treeValues: event.target.value },
     this.updateTree);
   }
@@ -139,7 +140,7 @@ class TreeTraversals extends React.Component {
             />
         </label>
 
-        <div className="radio_wrapper" onChange={this.updateTraversal}>
+        <div className="radio_wrapper">
           <button onClick={this.inOrder}>In Order</button>
           <button onClick={this.preOrder}>Pre Order</button>
           <button onClick={this.postOrder}>Post Order</button>

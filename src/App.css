@@ -18,3 +18,15 @@
 a {
   margin: 10px;
 }
+
+.sortCard-container {
+  border: 2px solid grey;
+  padding: 0 5px;
+}
+
+.sortCards-container {
+  width: 50%;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+}
