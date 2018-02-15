@@ -48,3 +48,15 @@ a {
   width: 50%;
   margin: 10px 0;
 }
+
+.side-submenu {
+
+}
+
+.highCard {
+  border: 1px solid yellow;
+}
+
+.regCard {
+  border: 1px solid red;
+}

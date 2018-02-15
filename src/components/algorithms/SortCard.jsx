@@ -7,9 +7,13 @@ class SortCard extends React.Component {
   }
 
   render() {
+    const { highCards, value } = this.props;
+
+    const cName = (highCards.includes(value) ? 'highCard' : 'regCard');
+
     return (
-      <div className="sortCard-container">
-        <h2>{this.props.value}</h2>
+      <div className={`sortCard-container ${cName}`}>
+        <h2>{value}</h2>
 
       </div>
 

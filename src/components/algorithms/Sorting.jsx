@@ -9,7 +9,9 @@ class Sorting extends React.Component {
     this.state = {
       unsortedValues: '',
       sortedValues: [2,5,7,9],
-
+      steps: [],
+      stepIndex: 0,
+      highlightedCards: [],
     }
 
     this.bubbleSort = this.bubbleSort.bind(this);
@@ -21,18 +23,65 @@ class Sorting extends React.Component {
   }
 
   bubbleSort() {
-    this.setState({ sortedValues: [9,2,7,5]});
+    let steps = [];
+
+    let currentStep = this.state.unsortedValues
+      .replace(/[^0-9,.]/g,'').split(',').map(ch => parseFloat(ch));
+
+    let swapped;
+    do {
+      swapped = false;
+      for (let i = 0; i < currentStep.length - 1; i++) {
+        steps.push([
+          currentStep.map(ch => ch), currentStep[i], currentStep[i + 1]
+        ]);
+
+        if (currentStep[i] > currentStep[i + 1]) {
+          let swap = currentStep[i];
+          currentStep[i] = currentStep[i + 1];
+          currentStep[i + 1] = swap;
+          swapped = true;
+          steps.push([
+            currentStep.map(ch => ch), currentStep[i], currentStep[i + 1]
+          ]);
+        }
+
+      }
+    } while (swapped);
+
+    this.setState({ steps, stepIndex: 0,
+     },
+      this.setState({ sortedValues: steps[this.state.stepIndex][0] })
+    );
   }
+
   quickSort() {
+    this.quickSteps();
     this.setState({ sortedValues: [2,5,9,7]});
   }
-  mergeSort() {}
+
+  quickSteps() {
+    const steps = [];
+  }
+
+  mergeSort() {
+    this.mergeSteps();
+  }
+
+  mergeSteps() {
+    const steps = [];
+  }
 
   prevStep() {
 
   }
 
   nextStep() {
+    this.setState({
+      stepIndex: this.state.stepIndex + 1,
+      sortedValues: this.state.steps[this.state.stepIndex][0],
+      highlightedCards: this.state.steps[this.state.stepIndex].slice(1)
+    });
 
   }
 
@@ -46,11 +95,11 @@ class Sorting extends React.Component {
   render() {
     const sortCards = this.state.sortedValues.map(value => (
       <SortCard
-        key={ value }
-        value={ value }
-      />
-      )
-    );
+        key={ value } value={ value }
+        highCards={this.state.highlightedCards}
+     />
+    ));
+
     return (
       <div>
         <h2>Sorting</h2>
@@ -79,7 +128,7 @@ class Sorting extends React.Component {
             />
         </label>
 
-        <div className="radio_wrapper">
+        <div className="radio_wrapper side-submenu">
           <button onClick={this.bubbleSort}>Bubble Sort</button>
           <button onClick={this.quickSort}>Quick Sort</button>
           <button onClick={this.mergeSort}>Merge Sort</button>
