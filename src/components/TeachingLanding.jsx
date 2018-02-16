@@ -11,6 +11,7 @@ class TeachingLanding extends React.Component {
       <div>
         <p>Teaching Landing</p>
         <Link to='/teaching/algos'>Algorithms</Link>
+        <Link to='/teaching/d3play'>D3 Playground</Link>
       </div>
 
     );
