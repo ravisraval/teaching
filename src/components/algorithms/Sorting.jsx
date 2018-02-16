@@ -8,6 +8,7 @@ class Sorting extends React.Component {
     super(props);
     this.state = {
       unsortedValues: '',
+      inputValues: '',
       sortedValues: [2,5,7,9],
       steps: [],
       stepIndex: 0,
@@ -19,6 +20,7 @@ class Sorting extends React.Component {
     this.quickSort = this.quickSort.bind(this);
     this.mergeSort = this.mergeSort.bind(this);
     this.updateUnsortedValue = this.updateUnsortedValue.bind(this);
+    this.updateInputValue = this.updateInputValue.bind(this);
     this.prevStep = this.prevStep.bind(this);
     this.nextStep = this.nextStep.bind(this);
   }
@@ -56,31 +58,26 @@ class Sorting extends React.Component {
       }
     } while (swapped);
 
-    this.setState({ steps, stepIndex: 0,
-     },
+    this.setState({ steps, stepIndex: 0},
       this.setState({ sortedValues: steps[this.state.stepIndex][0] })
     );
   }
 
   quickSort() {
-    this.quickSteps();
     this.setState({ sortedValues: [2,5,9,7]});
-  }
-
-  quickSteps() {
-    const steps = [];
   }
 
   mergeSort() {
     this.mergeSteps();
   }
 
-  mergeSteps() {
-    const steps = [];
-  }
-
   prevStep() {
-
+    this.setState({
+      sortedValues: this.state.steps[this.state.stepIndex - 1][0],
+      highlightedCards: this.state.steps[this.state.stepIndex - 1].slice(1,3),
+      swapHappening: this.state.steps[this.state.stepIndex - 1].slice(-1)[0],
+      stepIndex: this.state.stepIndex - 1,
+    });
   }
 
   nextStep() {
@@ -90,14 +87,17 @@ class Sorting extends React.Component {
       highlightedCards: this.state.steps[this.state.stepIndex].slice(1,3),
       swapHappening: this.state.steps[this.state.stepIndex].slice(-1)[0]
     });
-
   }
 
-  updateUnsortedValue(event) {
+  updateUnsortedValue() {
     this.setState({
-      unsortedValues: event.target.value,
-      sortedValues: event.target.value.replace(/[^0-9,.]/g,'').split(',')
+      unsortedValues: this.state.inputValues,
+      sortedValues: this.state.inputValues.replace(/[^0-9,.]/g,'').split(',')
      });
+  }
+
+  updateInputValue(event) {
+    this.setState({ inputValues: event.target.value });
   }
 
   render() {
@@ -132,10 +132,11 @@ class Sorting extends React.Component {
 
         <label>Numbers to Sort
           <input
-            onChange={this.updateUnsortedValue}
-            value={this.state.unsortedValues}
+            onChange={this.updateInputValue}
+            value={this.state.inputValues}
             />
         </label>
+        <button onClick={this.updateUnsortedValue}>Update</button>
 
         <div className="radio_wrapper side-submenu">
           <button onClick={this.bubbleSort}>Bubble Sort</button>
