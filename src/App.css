@@ -64,3 +64,9 @@ a {
 .regCard {
   border: 1px solid grey;
 }
+
+.d3-wrap {
+  height: 400px;
+  width: 600px;
+  margin: 0 50px;
+}

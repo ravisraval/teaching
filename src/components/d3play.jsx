@@ -10,7 +10,7 @@ class D3Play extends React.Component {
       width: 420,
       height: 420
     };
-    //best practice to bind functions in the constructor
+
     this.updateDimensions = this.updateDimensions.bind(this);
   }
   // *magic* we take the div sourrounding the svg and set it's with/height to be the with/height of our SVG
@@ -36,11 +36,11 @@ class D3Play extends React.Component {
     let el = new ReactFauxDOM.Element('div');
 
     d3.select(el).append('svg')
-    .attr("width", 300)
-    .attr("height", 900)
+    .attr("width", width)
+    .attr("height", height)
 
     var nodes = [].concat(
-      d3.range(80).map(function() { return {type: "a"}; }),
+      d3.range(700).map(function() { return {type: "a"}; }),
       d3.range(160).map(function() { return {type: "b"}; })
     );
 
@@ -49,12 +49,12 @@ class D3Play extends React.Component {
       .selectAll("circle")
       .data(nodes)
       .enter().append("circle")
-        .attr("r", 2.5)
+        .attr("r", 8)
         .attr("fill", function(d) { return d.type === "a" ? "brown" : "steelblue"; })
 
     var simulation = d3.forceSimulation(nodes)
-        .force("charge", d3.forceCollide().radius(5))
-        .force("r", d3.forceRadial(function(d) { return d.type === "a" ? 100 : 200; }))
+        .force("charge", d3.forceCollide().radius(15))
+        .force("r", d3.forceRadial(function(d) { return d.type === "a" ? 150 : 300; }))
         .on("tick", ticked);
 
     function ticked() {
@@ -62,10 +62,6 @@ class D3Play extends React.Component {
           .attr("cx", function(d) { return d.x; })
           .attr("cy", function(d) { return d.y; });
     }
-    // we set ref on our newly created element
-
-
-    // the rest of our chart would go here
 
     el.setAttribute("ref", "chart");
 

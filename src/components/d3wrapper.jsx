@@ -13,8 +13,9 @@ class d3Wrapper extends React.Component {
       <div>
         <Link to='/teaching'>Back to Teaching</Link>
         <h2>D3 Playground</h2>
-
-        <D3Play />
+        <div className='d3-wrap'>
+          <D3Play />
+        </div>
       </div>
 
     );
