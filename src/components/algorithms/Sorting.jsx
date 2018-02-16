@@ -7,8 +7,8 @@ class Sorting extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      unsortedValues: '',
-      inputValues: '',
+      unsortedValues: '2,5,7,9',
+      inputValues: '2,5,7,9',
       sortedValues: [2,5,7,9],
       steps: [],
       stepIndex: 0,
@@ -82,11 +82,12 @@ class Sorting extends React.Component {
 
   nextStep() {
     this.setState({
-      stepIndex: this.state.stepIndex + 1,
-      sortedValues: this.state.steps[this.state.stepIndex][0],
-      highlightedCards: this.state.steps[this.state.stepIndex].slice(1,3),
-      swapHappening: this.state.steps[this.state.stepIndex].slice(-1)[0]
-    });
+      stepIndex: this.state.stepIndex + 1},
+      this.setState({
+        sortedValues: this.state.steps[this.state.stepIndex][0],
+        highlightedCards: this.state.steps[this.state.stepIndex].slice(1,3),
+        swapHappening: this.state.steps[this.state.stepIndex].slice(-1)[0]
+    }));
   }
 
   updateUnsortedValue() {
