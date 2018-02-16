@@ -36,8 +36,9 @@ class D3Play extends React.Component {
     let el = new ReactFauxDOM.Element('div');
 
     d3.select(el).append('svg')
-    .attr("width", width)
-    .attr("height", height)
+    .attr("width", 460)
+    .attr("height", 350)
+    .attr('viewBox', `-250 -450 760 900`)
 
     var nodes = [].concat(
       d3.range(700).map(function() { return {type: "a"}; }),
@@ -49,7 +50,7 @@ class D3Play extends React.Component {
       .selectAll("circle")
       .data(nodes)
       .enter().append("circle")
-        .attr("r", 8)
+        .attr("r", 2.5)
         .attr("fill", function(d) { return d.type === "a" ? "brown" : "steelblue"; })
 
     var simulation = d3.forceSimulation(nodes)
