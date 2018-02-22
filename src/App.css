@@ -14,11 +14,30 @@ button {
   padding: 15px 25px;
   font-size: 18px;
   transition: .7s;
+  outline: none;
 }
 
 button:hover {
   background: rgba(255,255,255,0.4);
   cursor: pointer;
+}
+
+label {
+  display: block;
+}
+
+.sort-input {
+  outline: none;
+  background: transparent;
+  margin-right: 15px;
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: 18px;
+  transition: 1s;
+}
+
+.sort-input:focus {
+  font-weight: 200;
 }
 
 .radio_wrapper {

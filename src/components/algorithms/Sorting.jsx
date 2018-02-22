@@ -122,6 +122,20 @@ class Sorting extends React.Component {
         <Link to='/teaching/algos/'>Back to Algos</Link>
 
         <h3>{`Sort Type: ${this.state.sortType}`}</h3>
+        <div className="radio_wrapper side-submenu">
+          <button onClick={this.bubbleSort}>Bubble Sort</button>
+          <button onClick={this.quickSort}>Quick Sort</button>
+          <button onClick={this.mergeSort}>Merge Sort</button>
+        </div>
+
+        <label>Numbers to Sort
+        </label>
+        <input
+          className="sort-input"
+          onChange={this.updateInputValue}
+          value={this.state.inputValues}
+          />
+        <button onClick={this.updateUnsortedValue}>Update</button>
 
         <FlipMove
           enterAnimation='accordionHorizontal'
@@ -138,19 +152,7 @@ class Sorting extends React.Component {
           <button onClick={this.nextStep}>Next Step</button>
         </div>
 
-        <label>Numbers to Sort
-          <input
-            onChange={this.updateInputValue}
-            value={this.state.inputValues}
-            />
-        </label>
-        <button onClick={this.updateUnsortedValue}>Update</button>
 
-        <div className="radio_wrapper side-submenu">
-          <button onClick={this.bubbleSort}>Bubble Sort</button>
-          <button onClick={this.quickSort}>Quick Sort</button>
-          <button onClick={this.mergeSort}>Merge Sort</button>
-        </div>
 
       </div>
 
