@@ -90,7 +90,7 @@ class TreeTraversals extends React.Component {
 
     const graphNodes = [];
     const graphLinks = [];
-
+    let x_move = 100;
     for (var i = 0; i < this.state.nodes.length; i++) {
       let node = this.state.nodes[i];
 
@@ -108,15 +108,16 @@ class TreeTraversals extends React.Component {
 
       // will need to modify numbers to avoid overlapping with nested nodes
       if (node.left) {
-        node.left.x = node.x - 50;
+        node.left.x = node.x - x_move;
         node.left.y = node.y + 50;
         graphLinks.push({source: node.value, target: node.left.value});
       }
       if (node.right) {
-        node.right.x = node.x + 50;
+        node.right.x = node.x + x_move;
         node.right.y = node.y + 50;
         graphLinks.push({source: node.value, target: node.right.value});
       }
+      x_move -= 20;
     };
 
     const graphProps = {
