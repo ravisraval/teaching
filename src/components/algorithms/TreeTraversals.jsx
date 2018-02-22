@@ -117,8 +117,8 @@ class TreeTraversals extends React.Component {
         node.right.y = node.y + 50;
         graphLinks.push({source: node.value, target: node.right.value});
       }
-      // TODO: change this to only decrement on next level
-      x_move -= 20;
+
+      if (i - 1 % 2 === 0) x_move -= 20;
     };
 
     const graphProps = {
