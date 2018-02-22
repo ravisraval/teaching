@@ -8,6 +8,19 @@ body {
   padding: 5%;
 }
 
+button {
+  background: transparent;
+  border: 2px solid white;
+  padding: 15px 25px;
+  font-size: 18px;
+  transition: .7s;
+}
+
+button:hover {
+  background: rgba(255,255,255,0.4);
+  cursor: pointer;
+}
+
 .radio_wrapper {
   margin: 10px 0;
   display: flex;
@@ -30,7 +43,7 @@ a {
   display: inline;
   padding: 10px;
   margin: 5px;
-  background-color: rgb(26, 179, 18);
+  /* background-color: rgb(26, 179, 18); */
   /* color: white; */
 }
 
@@ -45,7 +58,6 @@ a {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
-  /* background-color: black; */
 }
 
 .btn-group {
