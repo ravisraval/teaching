@@ -88,7 +88,7 @@ class TreeTraversals extends React.Component {
   render() {
     const graphConfig = {
       height: 400,
-      width: 800,
+      width: 1200,
       // TODO: use window width and height? then use this relative to node placement?
       minZoom: .5,
       maxZoom: 3,
@@ -101,12 +101,12 @@ class TreeTraversals extends React.Component {
 
     const graphNodes = [];
     const graphLinks = [];
-    let x_move = 200;
+    let x_move = 230;
     for (var i = 0; i < this.state.nodes.length; i++) {
       let node = this.state.nodes[i];
 
       if (node.x == null) { //set first node
-        node.x = 400;
+        node.x = 500;
         node.y = 10;
       }
 
@@ -129,7 +129,7 @@ class TreeTraversals extends React.Component {
         graphLinks.push({source: node.value, target: node.right.value});
       }
 
-      if ([0,2,6,14].includes(i)) x_move -= 50;
+      if ([0,2,6,14].includes(i)) x_move /= 2;
     };
 
     const graphProps = {
