@@ -14,6 +14,7 @@ class Sorting extends React.Component {
       stepIndex: 0,
       highlightedCards: [],
       swapHappening: false,
+      sortType: '',
     }
 
     this.bubbleSort = this.bubbleSort.bind(this);
@@ -58,17 +59,17 @@ class Sorting extends React.Component {
       }
     } while (swapped);
 
-    this.setState({ steps, stepIndex: 0},
+    this.setState({ sortType: 'Bubble', steps, stepIndex: 0},
       this.setState({ sortedValues: steps[this.state.stepIndex][0] })
     );
   }
 
   quickSort() {
-    this.setState({ sortedValues: [2,5,9,7]});
+    this.setState({ sortType: 'Quick', sortedValues: [2,5,9,7]});
   }
 
   mergeSort() {
-    this.mergeSteps();
+    this.setState({ sortType: 'Merge' });
   }
 
   prevStep() {
@@ -115,6 +116,8 @@ class Sorting extends React.Component {
         <h2>Sorting</h2>
         <Link to='/teaching'>Back to Teaching</Link>
         <Link to='/teaching/algos/'>Back to Algos</Link>
+
+        <h3>{`Sort Type: ${this.state.sortType}`}</h3>
 
         <FlipMove
           enterAnimation='accordionHorizontal'
