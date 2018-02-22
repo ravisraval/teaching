@@ -9,7 +9,7 @@ class TreeTraversals extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      treeValues: '5, 3, 7, 2, 4, 6, 8',
+      treeValues: '55,20,75,10,30,60,90,1,15,25,40,57,67,88,101,0,2,12,17,21,27,35,45,56,69,62,70,85,89,100,105',
       treeRoot: null,
       nodes: [new TreeNode(5)], // just a placeholder so no errors thrown while loading
       highlightedNode: 0
@@ -101,7 +101,7 @@ class TreeTraversals extends React.Component {
 
     const graphNodes = [];
     const graphLinks = [];
-    let x_move = 230;
+    let x_move = 180;
     for (var i = 0; i < this.state.nodes.length; i++) {
       let node = this.state.nodes[i];
 
