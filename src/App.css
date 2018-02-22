@@ -1,11 +1,11 @@
 body {
   height: 100vh;
   width: 100vw;
-  background: linear-gradient(to bottom right, #5EFCE8, #736EFE);
+  background: linear-gradient(to bottom right, #5EFCE8, #736EFE) no-repeat;
 }
 
 .body_wrapper {
-  padding: 5%;
+  padding: 1% 5%;
 }
 
 button {

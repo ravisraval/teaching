@@ -12,7 +12,8 @@ class TreeTraversals extends React.Component {
       treeValues: '55,20,75,10,30,60,90,1,15,25,40,57,67,88,101,0,2,12,17,21,27,35,45,56,69,62,70,85,89,100,105',
       treeRoot: null,
       nodes: [new TreeNode(5)], // just a placeholder so no errors thrown while loading
-      highlightedNode: 0
+      highlightedNode: 0,
+      traversal: '',
     }
 
     this.updateTreeValues = this.updateTreeValues.bind(this);
@@ -64,20 +65,28 @@ class TreeTraversals extends React.Component {
       this.updateTree);
   }
 
-  inOrder() {}
+  inOrder() {
+    this.setState({ traversal: 'inOrder' });
+    // TODO: have these functions generate a list of steps
+  }
 
-  preOrder() {}
+  preOrder() {
+    this.setState({ traversal: 'preOrder' });
+    // TODO: have these functions generate a list of steps
+  }
 
   postOrder() {
-    this.setState({ highlightedNode: 0}); // temporary to test graph rendering
+    // TODO: have these functions generate a list of steps
+    this.setState({ traversal: 'postOrder', highlightedNode: 0}); // temporary to test graph rendering
 
   }
 
   levelOrder() {
-    this.setState({ highlightedNode: 2}); // temporary to test graph rendering
+    this.setState({ traversal: 'levelOrder', highlightedNode: 2}); // temporary to test graph rendering
   }
 
   nextStep() {
+    // TODO: when above functions are implemented, just iterate through steps
     this.setState({ highlightedNode: this.state.highlightedNode + 1});
   }
 
@@ -148,6 +157,15 @@ class TreeTraversals extends React.Component {
         <Link to='/teaching'>Back to Teaching</Link>
         <h2>Binary Tree Traversal</h2>
 
+        <h3>Traversal Method: {this.state.traversal}</h3>
+
+        <div className="radio_wrapper">
+          <button onClick={this.inOrder}>In Order</button>
+          <button onClick={this.preOrder}>Pre Order</button>
+          <button onClick={this.postOrder}>Post Order</button>
+          <button onClick={this.levelOrder}>Level Order (AKA Breadth First Search)</button>
+        </div>
+
         <div className="graph_container">
           <Graph ref='graph' {...graphProps} />
         </div>
@@ -164,12 +182,6 @@ class TreeTraversals extends React.Component {
           <button onClick={this.nextStep}>Next Step</button>
         </div>
 
-        <div className="radio_wrapper">
-          <button onClick={this.inOrder}>In Order</button>
-          <button onClick={this.preOrder}>Pre Order</button>
-          <button onClick={this.postOrder}>Post Order</button>
-          <button onClick={this.levelOrder}>Level Order (AKA Breadth First Search)</button>
-        </div>
 
       </div>
 
