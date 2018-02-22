@@ -18,6 +18,9 @@ class TreeTraversals extends React.Component {
     this.updateTreeValues = this.updateTreeValues.bind(this);
     this.updateTree = this.updateTree.bind(this);
     this.levelOrder = this.levelOrder.bind(this);
+    this.postOrder = this.postOrder.bind(this);
+    this.preOrder = this.preOrder.bind(this);
+    this.inOrder = this.inOrder.bind(this);
   }
 
   componentDidMount() {
