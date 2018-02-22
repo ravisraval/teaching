@@ -5,6 +5,7 @@
   "dependencies": {
     "d3": "^4.13.0",
     "react": "^16.2.0",
+    "react-d3-graph": "^1.0.1",
     "react-dom": "^16.2.0",
     "react-faux-dom": "^4.1.0",
     "react-flip-move": "^3.0.1",
