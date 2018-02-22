@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import TreeNode from './TreeNode';
 import { Graph } from 'react-d3-graph';
 
+// TODO: just put in prev next buttons to handle stepping
 class TreeTraversals extends React.Component {
   constructor(props) {
     super(props);
@@ -10,8 +11,7 @@ class TreeTraversals extends React.Component {
       treeValues: '5, 3, 7, 2, 4, 6, 8',
       treeRoot: null,
       nodes: [new TreeNode(5)], // just a placeholder so no errors thrown while loading
-      highlightedNode: 0,
-      traverseSpeed: 1000,
+      highlightedNode: 0
     }
 
     this.updateTreeValues = this.updateTreeValues.bind(this);
