@@ -73,11 +73,8 @@ class Sorting extends React.Component {
   }
 
   prevStep() {
-    if (this.state.stepIndex === 0) {
-      console.log('cant go negative');
-      return;
-    }
-    
+    if (this.state.stepIndex === 0) return;
+
     this.setState({
       sortedValues: this.state.steps[this.state.stepIndex - 1][0],
       highlightedCards: this.state.steps[this.state.stepIndex - 1].slice(1,3),
