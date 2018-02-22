@@ -21,6 +21,8 @@ class TreeTraversals extends React.Component {
     this.postOrder = this.postOrder.bind(this);
     this.preOrder = this.preOrder.bind(this);
     this.inOrder = this.inOrder.bind(this);
+    this.prevStep = this.prevStep.bind(this);
+    this.nextStep = this.nextStep.bind(this);
   }
 
   componentDidMount() {
@@ -73,6 +75,14 @@ class TreeTraversals extends React.Component {
 
   levelOrder() {
     this.setState({ highlightedNode: 2}); // temporary to test graph rendering
+  }
+
+  nextStep() {
+    this.setState({ highlightedNode: this.state.highlightedNode + 1});
+  }
+
+  prevStep() {
+    this.setState({ highlightedNode: this.state.highlightedNode - 1});
   }
 
   render() {
@@ -147,6 +157,11 @@ class TreeTraversals extends React.Component {
             value={this.state.treeValues}
             />
         </label>
+
+        <div className="btn-group">
+          <button onClick={this.prevStep}>Previous Step</button>
+          <button onClick={this.nextStep}>Next Step</button>
+        </div>
 
         <div className="radio_wrapper">
           <button onClick={this.inOrder}>In Order</button>
