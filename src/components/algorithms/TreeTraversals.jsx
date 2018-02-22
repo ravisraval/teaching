@@ -90,12 +90,12 @@ class TreeTraversals extends React.Component {
 
     const graphNodes = [];
     const graphLinks = [];
-    let x_move = 100;
+    let x_move = 150;
     for (var i = 0; i < this.state.nodes.length; i++) {
       let node = this.state.nodes[i];
 
       if (node.x == null) { //set first node
-        node.x = 250;
+        node.x = 350;
         node.y = 10;
       }
 
@@ -118,7 +118,7 @@ class TreeTraversals extends React.Component {
         graphLinks.push({source: node.value, target: node.right.value});
       }
 
-      if (i % 2 === 0) x_move -= 20;
+      if ([0,2,6,14].includes(i)) x_move -= 35;
     };
 
     const graphProps = {
