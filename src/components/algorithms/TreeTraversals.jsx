@@ -4,6 +4,7 @@ import TreeNode from './TreeNode';
 import { Graph } from 'react-d3-graph';
 
 // TODO: just put in prev next buttons to handle stepping
+
 class TreeTraversals extends React.Component {
   constructor(props) {
     super(props);
@@ -54,16 +55,18 @@ class TreeTraversals extends React.Component {
   }
 
   updateTreeValues(event) {
-    console.log(event.target);
     this.setState({ treeValues: event.target.value },
-    this.updateTree);
+      this.updateTree);
   }
 
   inOrder() {}
 
   preOrder() {}
 
-  postOrder() {}
+  postOrder() {
+    this.setState({ highlightedNode: 0}); // temporary to test graph rendering
+
+  }
 
   levelOrder() {
     this.setState({ highlightedNode: 2}); // temporary to test graph rendering
