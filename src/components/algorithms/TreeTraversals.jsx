@@ -95,8 +95,8 @@ class TreeTraversals extends React.Component {
       let node = this.state.nodes[i];
 
       if (node.x == null) { //set first node
-        node.x = 0;
-        node.y = 0;
+        node.x = 250;
+        node.y = 10;
       }
 
       graphNodes.push({
