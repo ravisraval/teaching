@@ -87,8 +87,9 @@ class TreeTraversals extends React.Component {
 
   render() {
     const graphConfig = {
-      height: 300,
-      width: 500,
+      height: 400,
+      width: 800,
+      // TODO: use window width and height? then use this relative to node placement?
       minZoom: .5,
       maxZoom: 3,
       staticGraph: true,
