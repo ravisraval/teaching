@@ -81,7 +81,7 @@ class TreeTraversals extends React.Component {
       width: 500,
       minZoom: .5,
       maxZoom: 3,
-      // staticGraph: true,
+      staticGraph: true,
       nodeHighlightBehavior: true,
       node: {
         labelProperty: 'value',
