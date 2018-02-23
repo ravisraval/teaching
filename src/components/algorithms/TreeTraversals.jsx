@@ -91,7 +91,7 @@ class TreeTraversals extends React.Component {
       steps.push(nodeValues.indexOf(nodeOrder[i]));
     }
 
-    this.setState({ traversal: 'inOrder', stepIndex: 0, steps });
+    this.setState({ traversal: 'In Order', stepIndex: 0, steps });
   }
 
   preOrder() {
@@ -119,7 +119,7 @@ class TreeTraversals extends React.Component {
       steps.push(nodeValues.indexOf(nodeOrder[i]));
     }
 
-    this.setState({ traversal: 'preOrder', stepIndex: 0, steps });
+    this.setState({ traversal: 'Pre Order', stepIndex: 0, steps });
     // TODO: have these functions generate a list of steps
   }
 
@@ -148,7 +148,7 @@ class TreeTraversals extends React.Component {
       steps.push(nodeValues.indexOf(nodeOrder[i]));
     }
 
-    this.setState({ traversal: 'postOrder', stepIndex: 0, steps });
+    this.setState({ traversal: 'Post Order', stepIndex: 0, steps });
 
   }
 
@@ -158,10 +158,11 @@ class TreeTraversals extends React.Component {
       steps.push(i);
     }
 
-    this.setState({ traversal: 'levelOrder', stepIndex: 0, steps });
+    this.setState({ traversal: 'Level Order', stepIndex: 0, steps });
   }
 
   nextStep() {
+    if (this.state.stepIndex === this.state.steps.length - 1) return;
     this.setState({ stepIndex: this.state.stepIndex + 1 });
   }
 
