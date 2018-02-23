@@ -67,12 +67,31 @@ class TreeTraversals extends React.Component {
   }
 
   inOrder() {
+    const nodeValues = [];
+    this.state.nodes.forEach( node => {
+      nodeValues.push(node.value);
+    });
+
     const steps = [];
+    const nodeOrder = [];
 
+    function inOrderRec(node) {
+      if (node.left) {
+        inOrderRec(node.left);
+      }
+      nodeOrder.push(node.value);
+      if (node.right) {
+        inOrderRec(node.right);
+      }
+    }
 
+    inOrderRec(this.state.treeRoot);
+
+    for (var i = 0; i < nodeOrder.length; i++) {
+      steps.push(nodeValues.indexOf(nodeOrder[i]));
+    }
 
     this.setState({ traversal: 'inOrder', stepIndex: 0, steps });
-    // TODO: have these functions generate a list of steps
   }
 
   preOrder() {
