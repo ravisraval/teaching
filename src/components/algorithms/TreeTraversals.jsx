@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import TreeNode from './TreeNode';
 import { Graph } from 'react-d3-graph';
 
-// TODO: just put in prev next buttons to handle stepping
-
 class TreeTraversals extends React.Component {
   constructor(props) {
     super(props);
@@ -120,7 +118,6 @@ class TreeTraversals extends React.Component {
     }
 
     this.setState({ traversal: 'Pre Order', stepIndex: 0, steps });
-    // TODO: have these functions generate a list of steps
   }
 
   postOrder() {
@@ -205,7 +202,6 @@ class TreeTraversals extends React.Component {
         color: ( i === steps[stepIndex] ? 'green' : 'orange')
       });
 
-      // will need to modify numbers to avoid overlapping with nested nodes
       if (node.left) {
         node.left.x = node.x - x_move;
         node.left.y = node.y + 50;
