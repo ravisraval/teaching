@@ -12,8 +12,9 @@ class TreeTraversals extends React.Component {
       treeValues: '55,20,75,10,30,60,90,1,15,25,40,57,67,88,101,0,2,12,17,21,27,35,45,56,69,62,70,85,89,100,105',
       treeRoot: null,
       nodes: [new TreeNode(5)], // just a placeholder so no errors thrown while loading
-      highlightedNode: 0,
       traversal: '',
+      stepIndex: 0,
+      steps: [],
     }
 
     this.updateTreeValues = this.updateTreeValues.bind(this);
@@ -66,35 +67,52 @@ class TreeTraversals extends React.Component {
   }
 
   inOrder() {
-    this.setState({ traversal: 'inOrder' });
+    const steps = [];
+
+
+
+    this.setState({ traversal: 'inOrder', stepIndex: 0, steps });
     // TODO: have these functions generate a list of steps
   }
 
   preOrder() {
-    this.setState({ traversal: 'preOrder' });
+    const steps = [];
+
+
+
+    this.setState({ traversal: 'preOrder', stepIndex: 0, steps });
     // TODO: have these functions generate a list of steps
   }
 
   postOrder() {
-    // TODO: have these functions generate a list of steps
-    this.setState({ traversal: 'postOrder', highlightedNode: 0}); // temporary to test graph rendering
+    const steps = [];
+
+
+
+    this.setState({ traversal: 'postOrder', stepIndex: 0, steps });
 
   }
 
   levelOrder() {
-    this.setState({ traversal: 'levelOrder', highlightedNode: 2}); // temporary to test graph rendering
+    const steps = [];
+    for (var i = 0; i < this.state.nodes.length; i++) {
+      steps.push(i);
+    }
+
+    this.setState({ traversal: 'levelOrder', stepIndex: 0, steps });
   }
 
   nextStep() {
-    // TODO: when above functions are implemented, just iterate through steps
-    this.setState({ highlightedNode: this.state.highlightedNode + 1});
+    this.setState({ stepIndex: this.state.stepIndex + 1 });
   }
 
   prevStep() {
-    this.setState({ highlightedNode: this.state.highlightedNode - 1});
+    this.setState({ stepIndex: this.state.stepIndex - 1 });
   }
 
   render() {
+    const {steps, stepIndex} = this.state;
+
     const graphConfig = {
       height: 400,
       width: 1200,
@@ -123,7 +141,7 @@ class TreeTraversals extends React.Component {
         id: node.value,
         x: node.x,
         y: node.y,
-        color: ( i === this.state.highlightedNode ? 'green' : 'orange')
+        color: ( i === steps[stepIndex] ? 'green' : 'orange')
       });
 
       // will need to modify numbers to avoid overlapping with nested nodes
